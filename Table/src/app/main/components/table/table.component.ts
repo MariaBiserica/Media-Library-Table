@@ -14,7 +14,8 @@ export class TableComponent implements OnInit {
 
   moviesList!: Movie[];
   form!: FormGroup;
-  isVisible = false;
+  isVisible: boolean = false;
+  isDisabled: boolean = true;
 
   constructor(
     private moviesService: MoviesService,
@@ -36,15 +37,19 @@ export class TableComponent implements OnInit {
     this.moviesList = this.moviesService.movies;
     console.log(this.moviesList);
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      year: ['', Validators.required],
-      runtime: ['', Validators.required],
-      genre: ['', Validators.required],
-      actors: ['', Validators.required],
-      plot: ['', Validators.required],
+      title: ['', [Validators.required]],
+      year: ['', [Validators.required]],
+      runtime: ['', [Validators.required]],
+      genre: ['', [Validators.required]],
+      actors: ['', [Validators.required]],
+      plot: ['', [Validators.required, Validators.pattern(/^(\w+\s){4}\w+$/)]],
       awards: [''],
-      poster: ['', [CustomValidators.posterUrl]],
-      imdbRating: [null, [CustomValidators.ratingRange(0, 10)]]
+      poster: ['', [Validators.required, CustomValidators.posterUrl]],
+      imdbRating: [null, [Validators.required, CustomValidators.ratingRange(0, 10)]]
+    });
+
+    this.form.valueChanges.subscribe(() => {
+      this.isDisabled = this.form.invalid;
     });
   }
 
@@ -95,10 +100,15 @@ export class TableComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+    this.form.reset();
+    this.isDisabled = true;
   }
 
   handleOk(): void {
-    this.isVisible = false;
     this.moviesService.addNewMovie(this.getMovieFromForm());
+
+    this.isVisible = false;
+    this.form.reset();
+    this.isDisabled = true;
   }
 }
