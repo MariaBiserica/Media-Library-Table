@@ -27,12 +27,13 @@
       <tr *ngFor="let data of basicTable.data">
         <!-- ! pipe -->
         <td nzLeft style="font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">
-          <div *ngIf="data.isEditable">
+          <!-- <div *ngIf="data.isEditable">
             <input nz-input [(ngModel)]="data.title" class="nz-form-control"/>
           </div>
           <div *ngIf="!data.isEditable">
             {{ data.title | uppercase }}
-          </div>
+          </div> -->
+          {{ data.title | uppercase }}
         </td>
         <td>{{ data.year }}</td>
         <td>{{ data.runtime }}</td>
@@ -71,7 +72,7 @@
   </nz-table>
 </div>
 
-<nz-modal [nzVisible]="isVisible" nzTitle="Add Item" [nzFooter]="modalFooter">
+<nz-modal [nzVisible]="isVisible" nzTitle="Add / Edit Item" [nzFooter]="modalFooter">
   <ng-template #modalFooter>
     <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
     <button nz-button nzType="primary" (click)="handleOk()" [disabled]="isDisabled">OK</button>

@@ -13,9 +13,11 @@ import { CustomValidators } from '../../helpers/validators';
 export class TableComponent implements OnInit {
 
   moviesList!: Movie[];
+  initialMovie!: Movie;
   form!: FormGroup;
   isVisible: boolean = false;
   isDisabled: boolean = true;
+  isInEditMode: boolean = false;
 
   constructor(
     private moviesService: MoviesService,
@@ -42,7 +44,7 @@ export class TableComponent implements OnInit {
       runtime: ['', [Validators.required]],
       genre: ['', [Validators.required]],
       actors: ['', [Validators.required]],
-      plot: ['', [Validators.required, Validators.pattern(/^(\w+\s){4}\w+$/)]],
+      plot: ['', [Validators.required, CustomValidators.descriptionWordsCount(5)]],
       awards: [''],
       poster: ['', [Validators.required, CustomValidators.posterUrl]],
       imdbRating: [null, [Validators.required, CustomValidators.ratingRange(0, 10)]]
@@ -62,21 +64,26 @@ export class TableComponent implements OnInit {
   }
 
   editMovie(movie: Movie) {
-    
-    this.moviesList.forEach(element =>{
-      element.isEditable = false;
-    })
-    movie.isEditable = true;
-    this.moviesService.updateMovie(movie);
+    this.initialMovie = movie;
 
-    // *query params
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {
-        movieTitle: movie.title,
-      },
-      queryParamsHandling: 'merge',
+    this.isInEditMode = true;
+    this.form.setValue({
+      title: movie.title,
+      year: movie.year,
+      runtime: movie.runtime,
+      genre: movie.genre,
+      actors: movie.actors,
+      plot: movie.plot,
+      awards: movie.awards,
+      poster: movie.poster,
+      imdbRating: movie.imdbRating
     });
+
+    this.showModal();
+  }
+
+  showModal(): void {
+    this.isVisible = true;
   }
 
   getMovieFromForm(): Movie {
@@ -94,21 +101,21 @@ export class TableComponent implements OnInit {
     };
   }
 
-  showModal(): void {
-    this.isVisible = true;
-  }
-
   handleCancel(): void {
     this.isVisible = false;
     this.form.reset();
-    this.isDisabled = true;
   }
 
   handleOk(): void {
-    this.moviesService.addNewMovie(this.getMovieFromForm());
+    if(this.isInEditMode){
+      this.isInEditMode = false;
+      this.moviesService.updateMovie(this.initialMovie, this.getMovieFromForm());
+    }
+    else{
+      this.moviesService.addNewMovie(this.getMovieFromForm());
+    }
 
     this.isVisible = false;
     this.form.reset();
-    this.isDisabled = true;
   }
 }

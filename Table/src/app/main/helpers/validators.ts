@@ -1,6 +1,20 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export class CustomValidators {
+  static descriptionWordsCount(minWords: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (value === null || value === undefined || value.trim() === '') {
+        return null;
+      }
+      const words = value.trim().split(/\s+/);
+      if (words.length < minWords) {
+        return { wordsCount: true };
+      }
+      return null;
+    };
+  }  
+
   static ratingRange(min: number, max: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;

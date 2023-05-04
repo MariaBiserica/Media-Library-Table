@@ -23,7 +23,8 @@ export class MoviesService {
   }
 
   deleteMovie(movie: Movie) {
-    const index = this.moviesList.findIndex(() => movie);
+    const index = this.moviesList.findIndex((item) => item === movie);
+    console.log(index);
     this.moviesList.splice(index, 1);
 
     this.moviesListSubject.next(this.moviesList);
@@ -34,10 +35,14 @@ export class MoviesService {
     this.moviesListSubject.next(this.moviesList);
   }
 
-  updateMovie(movie: Movie) {
-    const index = this.moviesList.findIndex((item) => item.title === movie.title);
-    this.moviesList[index] = movie;
-    this.moviesListSubject.next(this.moviesList);
+  updateMovie(initialMovie: Movie, movie: Movie) {
+    const index = this.moviesList.findIndex((item) => item === initialMovie);
+    if(index != -1){
+      this.moviesList[index] = movie;
+      this.moviesListSubject.next(this.moviesList);
+    }
+    console.log(index);
+    console.log(this.moviesList[index]);
   }
 
   sortByRating() {
