@@ -1,4 +1,5 @@
 export interface Movie {
+  isEditable: boolean;
   title: string;
   year: number;
   runtime: string;
@@ -7,5 +8,5 @@ export interface Movie {
   plot: string;
   awards: string;
   poster: string;
-  imdbRating: string;
+  imdbRating: number;
 }

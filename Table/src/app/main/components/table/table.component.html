@@ -1,9 +1,9 @@
 <div class="table-container">
   <div class="table-operations">
-    <button nz-button (click)="sortByYear()" nzType="primary">
-      Sort By Year
+    <button nz-button (click)="sortByRating()" nzType="primary">
+      Sort By Rating
     </button>
-    <button nz-button (click)="addNewMovie()" nzType="primary">
+    <button nz-button (click)="showModal()" nzType="primary">
       Add New Movie
     </button>
   </div>
@@ -26,30 +26,108 @@
     <tbody>
       <tr *ngFor="let data of basicTable.data">
         <!-- ! pipe -->
-        <td nzLeft>{{ data.title | uppercase }}</td>
+        <td nzLeft style="font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">
+          <div *ngIf="data.isEditable">
+            <input nz-input [(ngModel)]="data.title" class="nz-form-control"/>
+          </div>
+          <div *ngIf="!data.isEditable">
+            {{ data.title | uppercase }}
+          </div>
+        </td>
         <td>{{ data.year }}</td>
         <td>{{ data.runtime }}</td>
         <td>{{ data.genre }}</td>
         <td>{{ data.actors }}</td>
-        <td>{{ data.plot }}</td>
+        <td style="color: rgb(0, 187, 255); text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">{{ data.plot }}</td>
         <td>{{ data.awards }}</td>
         <td><img [src]="data.poster" alt="poster picture here" class="image-card"></td>
         <td>{{ data.imdbRating }}</td>
         <td>
-          <span
-            nz-icon
-            nzType="delete"
-            nzTheme="outline"
-            (click)="deleteMovie(data)"
-          ></span>
-          <span
-            nz-icon
-            nzType="edit"
-            nzTheme="outline"
-            (click)="editMovie(data)"
-          ></span>
+          <div *ngIf="data.isEditable">
+            <span 
+              nz-icon 
+              nzType="check"
+              nzTheme="outline"
+              (click)="data.isEditable = false"
+            ></span>
+          </div>
+          <div *ngIf="!data.isEditable">
+            <span
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+              (click)="deleteMovie(data)"
+            ></span>
+            <span
+              nz-icon
+              nzType="edit"
+              nzTheme="outline"
+              (click)="editMovie(data)"
+            ></span>
+          </div>
         </td>
       </tr>
     </tbody>
   </nz-table>
 </div>
+
+<nz-modal [nzVisible]="isVisible" nzTitle="Add Item" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <nz-form [formGroup]="form" nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Title</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="title" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Year</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="year" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Runtime</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="runtime" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Genre</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="genre" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Actors</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="actors" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Plot</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <textarea nz-input formControlName="plot"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Awards</nz-form-label>
+        <nz-form-control [nzSpan]="16">
+          <input nz-input formControlName="awards" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">Poster</nz-form-label>
+        <nz-form-control [nzSpan]="16" nzErrorTip="Please enter a valid URL for a JPG, JPEG, or PNG image">
+          <input nz-input formControlName="poster" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="8">IMDB Rating</nz-form-label>
+        <nz-form-control [nzSpan]="16" nzErrorTip="Rating must be between 0 and 10">
+          <input nz-input formControlName="imdbRating" type="number" step="0.1" />
+        </nz-form-control>
+      </nz-form-item>
+    </nz-form>    
+  </ng-container>
+</nz-modal>

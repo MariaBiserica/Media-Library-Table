@@ -7,6 +7,7 @@ import moviesData from './movies.json';
   providedIn: 'root',
 })
 export class MoviesService {
+
   private moviesList: Movie[] = moviesData;
   moviesListSubject = new Subject<Movie[]>();
 
@@ -28,29 +29,21 @@ export class MoviesService {
     this.moviesListSubject.next(this.moviesList);
   }
 
-  addNewMovie() {
-    this.moviesList.push(this.emptyMovie());
+  addNewMovie(newMovie: Movie) {
+    this.moviesList.push(newMovie);
     this.moviesListSubject.next(this.moviesList);
   }
 
-  sortByYear() {
+  updateMovie(movie: Movie) {
+    const index = this.moviesList.findIndex((item) => item.title === movie.title);
+    this.moviesList[index] = movie;
+    this.moviesListSubject.next(this.moviesList);
+  }
+
+  sortByRating() {
     this.moviesList.sort((a, b) => {
-      return a.year > b.year ? 1 : -1;
+      return a.imdbRating < b.imdbRating ? 1 : -1;
     });
     this.moviesListSubject.next(this.moviesList);
-  }
-
-  emptyMovie(): Movie {
-    return {
-      title: '-',
-      year: 1,
-      runtime: '-',
-      actors: '-',
-      plot: '-',
-      genre: '-',
-      awards: '-',
-      poster: '-',
-      imdbRating: '-',
-    };
   }
 }
