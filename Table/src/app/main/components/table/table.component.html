@@ -19,7 +19,7 @@
         <th>Plot</th>
         <th>Awards</th>
         <th>Poster</th>
-        <th>imdb Rating</th>
+        <th>IMDB Rating</th>
         <th></th>
       </tr>
     </thead>
@@ -27,12 +27,6 @@
       <tr *ngFor="let data of basicTable.data">
         <!-- ! pipe -->
         <td nzLeft style="font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">
-          <!-- <div *ngIf="data.isEditable">
-            <input nz-input [(ngModel)]="data.title" class="nz-form-control"/>
-          </div>
-          <div *ngIf="!data.isEditable">
-            {{ data.title | uppercase }}
-          </div> -->
           {{ data.title | uppercase }}
         </td>
         <td>{{ data.year }}</td>

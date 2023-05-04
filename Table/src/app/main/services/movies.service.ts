@@ -24,10 +24,10 @@ export class MoviesService {
 
   deleteMovie(movie: Movie) {
     const index = this.moviesList.findIndex((item) => item === movie);
-    console.log(index);
-    this.moviesList.splice(index, 1);
-
-    this.moviesListSubject.next(this.moviesList);
+    if(index != -1){
+      this.moviesList.splice(index, 1);
+      this.moviesListSubject.next(this.moviesList);
+    }
   }
 
   addNewMovie(newMovie: Movie) {
@@ -41,8 +41,6 @@ export class MoviesService {
       this.moviesList[index] = movie;
       this.moviesListSubject.next(this.moviesList);
     }
-    console.log(index);
-    console.log(this.moviesList[index]);
   }
 
   sortByRating() {

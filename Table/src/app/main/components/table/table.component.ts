@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../interfaces/movie.interface';
 import { MoviesService } from '../../services/movies.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,8 +21,7 @@ export class TableComponent implements OnInit {
 
   constructor(
     private moviesService: MoviesService,
-    private route: ActivatedRoute,
-    private router: Router, 
+    private route: ActivatedRoute, 
     private fb: FormBuilder
   ) {
     this.route.queryParams.subscribe((res: any) => {
