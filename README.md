@@ -1,4 +1,4 @@
-# Media-Library-ngZorro
+# Media-Library-Table
 The application is an Angular-based web app that allows users to store and manage their favorite movies and TV series. The app consists of a table that displays the stored items and follows several specific requirements.
 
 Firstly, the table is created using ngZorro and contains at least five columns. The last column includes an edit and delete icon that allows users to edit a row in the table / or remove it. Above the table, there is an 'Add' button that allows users to add a new entry to the table, and an 'Sort by rating' button.
