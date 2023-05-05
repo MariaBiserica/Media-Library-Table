@@ -87,7 +87,6 @@ export class TableComponent implements OnInit {
 
   getMovieFromForm(): Movie {
     return {
-      isEditable: false,
       title: this.form.value.title,
       year: this.form.value.year,
       runtime: this.form.value.runtime,

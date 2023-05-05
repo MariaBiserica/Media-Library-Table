@@ -38,15 +38,7 @@
         <td><img [src]="data.poster" alt="poster picture here" class="image-card"></td>
         <td>{{ data.imdbRating }}</td>
         <td>
-          <div *ngIf="data.isEditable">
-            <span 
-              nz-icon 
-              nzType="check"
-              nzTheme="outline"
-              (click)="data.isEditable = false"
-            ></span>
-          </div>
-          <div *ngIf="!data.isEditable">
+          <div>
             <span
               nz-icon
               nzType="delete"

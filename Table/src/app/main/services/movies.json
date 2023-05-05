@@ -1,6 +1,5 @@
 [
   {
-    "isEditable": false,
     "title": "Outlander",
     "year": 2014,
     "runtime": "60 min",
@@ -12,7 +11,6 @@
     "imdbRating": 8.4
   },
   {
-    "isEditable": false,
     "title": "Avatar",
     "year": 2009,
     "runtime": "162 min",
@@ -24,7 +22,6 @@
     "imdbRating": 7.9
   },
   {
-    "isEditable": false,
     "title": "I Am Legend",
     "year": 2007,
     "runtime": "101 min",
@@ -36,7 +33,6 @@
     "imdbRating": 7.2
   },
   {
-    "isEditable": false,
     "title": "300",
     "year": 2006,
     "runtime": "117 min",
@@ -48,7 +44,6 @@
     "imdbRating": 7.7
   },
   {
-    "isEditable": false,
     "title": "The Avengers",
     "year": 2012,
     "runtime": "143 min",
@@ -60,7 +55,6 @@
     "imdbRating": 8.1
   },
   {
-    "isEditable": false,
     "title": "The Wolf of Wall Street",
     "year": 2013,
     "runtime": "180 min",
@@ -72,7 +66,6 @@
     "imdbRating": 8.2
   },
   {
-    "isEditable": false,
     "title": "Interstellar",
     "year": 2014,
     "runtime": "169 min",
@@ -84,7 +77,6 @@
     "imdbRating": 8.6
   },
   {
-    "isEditable": false,
     "title": "Game of Thrones",
     "year": 2011,
     "runtime": "56 min",
@@ -96,7 +88,6 @@
     "imdbRating": 9.5
   },
   {
-    "isEditable": false,
     "title": "Vikings",
     "year": 2013,
     "runtime": "44 min",
@@ -108,7 +99,6 @@
     "imdbRating": 8.6
   },
   {
-    "isEditable": false,
     "title": "Gotham",
     "year": 2014,
     "runtime": "42 min",
@@ -132,7 +122,6 @@
     "imdbRating": 8.0
   },
   {
-    "isEditable": false,
     "title": "Narcos",
     "year": 2015,
     "runtime": "49 min",
@@ -144,7 +133,6 @@
     "imdbRating": 8.9
   },
   {
-    "isEditable": false,
     "title": "Breaking Bad",
     "year": 2008,
     "runtime": "49 min",
@@ -156,7 +144,6 @@
     "imdbRating": 9.5
   },
   {
-    "isEditable": false,
     "title": "Doctor Strange",
     "year": 2016,
     "runtime": "115 min",
@@ -168,7 +155,6 @@
     "imdbRating": 7.5
   },
   {
-    "isEditable": false,
     "title": "Rogue One: A Star Wars Story",
     "year": 2016,
     "runtime": "133 min",
@@ -180,7 +166,6 @@
     "imdbRating": 7.8
   },
   {
-    "isEditable": false,
     "title": "Assassin's Creed",
     "year": 2016,
     "runtime": "115 min",
@@ -192,7 +177,6 @@
     "imdbRating": 5.6
   },
   {
-    "isEditable": false,
     "title": "Luke Cage",
     "year": 2016,
     "runtime": "55 min",

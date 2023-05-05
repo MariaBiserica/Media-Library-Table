@@ -1,5 +1,4 @@
 export interface Movie {
-  isEditable: boolean;
   title: string;
   year: number;
   runtime: string;
